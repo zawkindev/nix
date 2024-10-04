@@ -115,7 +115,6 @@
     nil
     qbittorrent
     zsh
-    google-chrome
     postman
   ];
 

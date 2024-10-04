@@ -262,7 +262,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Colloid-Dark";
+      name = "";
     };
 
     "org/gnome/shell/world-clocks" = {
