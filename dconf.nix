@@ -55,6 +55,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/input-sources" = {
+      show-all-sources = true;
       sources = [ (mkTuple [ "xkb" "us" ]) ];
       xkb-options = [ "ctrl:swapcaps" ];
     };
@@ -69,7 +70,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "org-telegram-desktop" "firefox" "gnome-power-panel" "org-gnome-console" "idea-community" ];
+      application-children = [ "org-telegram-desktop" "firefox" "gnome-power-panel" "org-gnome-console" "idea-community" "org-gnome-tweaks" ];
     };
 
     "org/gnome/desktop/notifications/application/firefox" = {
@@ -88,8 +89,16 @@ with lib.hm.gvariant;
       application-id = "org.gnome.Console.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-nautilus" = {
+      application-id = "org.gnome.Nautilus.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/org-gnome-settings" = {
       application-id = "org.gnome.Settings.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-tweaks" = {
+      application-id = "org.gnome.tweaks.desktop";
     };
 
     "org/gnome/desktop/notifications/application/org-telegram-desktop" = {
@@ -129,7 +138,13 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/preferences" = {
+      auto-raise = false;
       button-layout = "appmenu:close";
+      focus-mode = "click";
+    };
+
+    "org/gnome/epiphany" = {
+      ask-for-default = false;
     };
 
     "org/gnome/epiphany/state" = {
@@ -158,6 +173,10 @@ with lib.hm.gvariant;
       sort-order = 0;
     };
 
+    "org/gnome/mutter" = {
+      center-new-windows = true;
+    };
+
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
       migrated-gtk-settings = true;
@@ -179,6 +198,10 @@ with lib.hm.gvariant;
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "idea-community.desktop" "org.gnome.Console.desktop" "org.telegram.desktop.desktop" ];
       last-selected-power-profile = "performance";
       welcome-dialog-last-shown-version = "46.2";
+    };
+
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
     };
 
     "org/gnome/shell/extensions/blur-my-shell" = {
