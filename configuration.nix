@@ -96,9 +96,6 @@
     gnomeExtensions.topicons-plus
     gnomeExtensions.blur-my-shell
     gnome.gnome-tweaks
-    orchis-theme
-    colloid-gtk-theme
-    colloid-icon-theme
     auto-cpufreq
     powertop
     evdevremapkeys
@@ -114,8 +111,7 @@
     nixpkgs-fmt
     nil
     qbittorrent
-    zsh
-    postman
+    pgadmin4-desktopmode
   ];
 
   services.auto-cpufreq.enable = true;
@@ -146,6 +142,6 @@
     # port = 5432;
   };
 
-  
+
   system.stateVersion = "24.05"; # Did you read the comment?
 }

@@ -10,22 +10,22 @@
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
 
-  outputs = {self, nixpkgs, home-manager, alacritty-theme, ...}@inputs:{
-    nixosConfigurations.asuna = nixpkgs.lib.nixosSystem{
+  outputs = { self, nixpkgs, home-manager, alacritty-theme, ... }@inputs: {
+    nixosConfigurations.asuna = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
 
-        ({ config, pkgs, ...}: {
+        ({ config, pkgs, ... }: {
           # install the overlay
           nixpkgs.overlays = [ alacritty-theme.overlays.default ];
         })
 
         home-manager.nixosModules.home-manager
         {
-         home-manager.useGlobalPkgs = true; 
-         home-manager.useUserPackages = true; 
-         home-manager.users.shahruz = import ./home.nix; 
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.shahruz = import ./home.nix;
         }
       ];
     };

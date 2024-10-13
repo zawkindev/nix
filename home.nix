@@ -1,4 +1,4 @@
-{config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
   home.homeDirectory = "/home/shahruz";
 
   home.packages = with pkgs; [
-    neovim 
+    neovim
     telegram-desktop
     neofetch
     ripgrep
@@ -23,8 +23,17 @@
     jetbrains-toolbox
     jetbrains.idea-community-bin
     zulu17
-    pgadmin4-desktopmode
     upscayl
+    gccgo14
+    zsh
+    nodejs_20
+    bun
+    yarn
+    gnumake
+    python312
+    ripgrep
+    cargo
+    postman
   ];
 
   programs.git = {
@@ -37,7 +46,7 @@
     enable = true;
   };
 
-  
+
   programs.alacritty = {
     enable = true;
 
@@ -92,7 +101,7 @@
         formatter = { command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"; };
       }];
     };
-    
+
     extraPackages = with pkgs; [
       nodePackages.bash-language-server
       clang-tools
@@ -120,7 +129,7 @@
       ansible-language-server
     ];
   };
-   
+
 
   programs.zsh = {
     enable = true;
@@ -130,21 +139,20 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "history-substring-search" "colored-man-pages" "z"];
+      plugins = [ "git" "history-substring-search" "colored-man-pages" "z" ];
     };
 
     shellAliases = {
-      update = "sudo nixos-rebuild switch";
       ll = "ls -l";
-      cls="clear";
-      tx="tmux";
-      g="git";
-      gc="git clone";
-      ga="git add .";
-      gs="git status";
-      gcm="git commit -m";
-      gpsh="git push";
-      gpl="git pull";
+      cls = "clear";
+      tx = "tmux";
+      g = "git";
+      gc = "git clone";
+      ga = "git add .";
+      gs = "git status";
+      gcm = "git commit -m";
+      gpsh = "git push";
+      gpl = "git pull";
     };
   };
 

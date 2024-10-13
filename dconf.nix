@@ -46,9 +46,12 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/background" = {
+      color-shading-type = "solid";
       picture-options = "zoom";
       picture-uri = "file:///home/shahruz/.config/background";
       picture-uri-dark = "file:///home/shahruz/.config/background";
+      primary-color = "#3071AE";
+      secondary-color = "#000000";
     };
 
     "org/gnome/desktop/input-sources" = {
@@ -59,9 +62,10 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       cursor-theme = "Adwaita";
-      gtk-theme = "Adwaita-dark";
-      icon-theme = "Colloid-dark";
+      gtk-theme = "Adwaita";
+      icon-theme = "Adwaita";
       monospace-font-name = "Hack 12";
+      show-battery-percentage = true;
     };
 
     "org/gnome/desktop/notifications" = {
@@ -98,6 +102,18 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = false;
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      color-shading-type = "solid";
+      picture-options = "zoom";
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jxl";
+      primary-color = "#3071AE";
+      secondary-color = "#000000";
+    };
+
+    "org/gnome/desktop/session" = {
+      idle-delay = mkUint32 0;
     };
 
     "org/gnome/desktop/sound" = {
@@ -150,6 +166,11 @@ with lib.hm.gvariant;
 
     "org/gnome/nautilus/window-state" = {
       initial-size = mkTuple [ 890 550 ];
+    };
+
+    "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
+      power-saver-profile-on-low-battery = false;
     };
 
     "org/gnome/shell" = {
