@@ -34,6 +34,9 @@
     ripgrep
     cargo
     postman
+    onlyoffice-bin
+    ungoogled-chromium
+    obs-studio
   ];
 
   programs.git = {
@@ -178,6 +181,12 @@
       :map <C-=> <Action>(ZoomInIdeAction)
       :map <C--> <Action>(ZoomOutIdeAction)
     '';
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+    style.name = "kvantum";
   };
 
   home.stateVersion = "24.05";

@@ -16,14 +16,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
-  systemd.services.powertop = {
-    description = "powertop";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.powertop}/bin/powertop --auto-tune";
-    };
-  };
-
   networking.hostName = "asuna"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -43,9 +35,6 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -54,8 +43,13 @@
     enable = true;
     layout = "us";
     xkbOptions = "ctrl:swapcaps";
+
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    desktopManager.plasma6.enable = true;
   };
 
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -112,6 +106,7 @@
     nil
     qbittorrent
     pgadmin4-desktopmode
+    cmake
   ];
 
   services.auto-cpufreq.enable = true;
@@ -140,6 +135,14 @@
     initialEmail = "zawkindev@gmail.com";
     initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Define this file
     # port = 5432;
+  };
+
+  systemd.services.powertop = {
+    description = "powertop";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.powertop}/bin/powertop --auto-tune";
+    };
   };
 
 
