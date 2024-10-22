@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./dconf.nix
   ];
 
   home.username = "shahruz";
@@ -80,7 +79,6 @@
         size = 14;
       };
 
-      import = [ pkgs.alacritty-theme.carbonfox ];
       selection.save_to_clipboard = true;
     };
   };
@@ -130,6 +128,8 @@
       lemminx
       yaml-language-server
       ansible-language-server
+      libsForQt5.qt5ct
+      libsForQt5.qtstyleplugin-kvantum
     ];
   };
 
@@ -160,11 +160,8 @@
   };
 
   home.file = {
-    "~/.zshrc".text = ''
-      eval "$(starship init zsh)"
-    '';
-
     "~/.ideavimrc".text = ''
+        echo "Creating .ideavimrc file..."
       :map fmt <Action>(ReformatCode)
       :map mn <Action>(NextTab)
       :map ml <Action>(PreviousTab)
@@ -181,11 +178,17 @@
       :map <C-=> <Action>(ZoomInIdeAction)
       :map <C--> <Action>(ZoomOutIdeAction)
     '';
+
+    "~/.zshrc".text = ''
+        echo "Creating .zshrc file..."
+      eval "$(starship init zsh)"
+    '';
+
   };
 
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme.name = "qtct";
     style.name = "kvantum";
   };
 

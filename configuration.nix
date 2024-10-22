@@ -9,6 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./dconf.nix
     ];
 
   # Bootloader.
@@ -46,7 +47,7 @@
 
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    desktopManager.plasma6.enable = true;
+    # desktopManager.plasma6.enable = true;
   };
 
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
@@ -128,13 +129,6 @@
       CREATE DATABASE nixcloud;
       GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
     '';
-  };
-
-  services.pgadmin = {
-    enable = true;
-    initialEmail = "zawkindev@gmail.com";
-    initialPasswordFile = "/var/lib/pgadmin/initial-password"; # Define this file
-    # port = 5432;
   };
 
   systemd.services.powertop = {
