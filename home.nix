@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./dconf.nix
+        ./dconf.nix
   ];
 
   home.username = "shahruz";
@@ -80,7 +80,6 @@
         size = 14;
       };
 
-      import = [ pkgs.alacritty-theme.carbonfox ];
       selection.save_to_clipboard = true;
     };
   };
@@ -160,11 +159,8 @@
   };
 
   home.file = {
-    "~/.zshrc".text = ''
-      eval "$(starship init zsh)"
-    '';
-
     "~/.ideavimrc".text = ''
+        echo "Creating .ideavimrc file..."
       :map fmt <Action>(ReformatCode)
       :map mn <Action>(NextTab)
       :map ml <Action>(PreviousTab)
@@ -181,12 +177,12 @@
       :map <C-=> <Action>(ZoomInIdeAction)
       :map <C--> <Action>(ZoomOutIdeAction)
     '';
-  };
 
-  qt = {
-    enable = true;
-    platformTheme = "qtct";
-    style.name = "kvantum";
+    "~/.zshrc".text = ''
+        echo "Creating .zshrc file..."
+      eval "$(starship init zsh)"
+    '';
+
   };
 
   home.stateVersion = "24.05";
