@@ -129,6 +129,8 @@
       lemminx
       yaml-language-server
       ansible-language-server
+      libsForQt5.qt5ct
+      libsForQt5.qtstyleplugin-kvantum
     ];
   };
 
@@ -182,8 +184,8 @@
         echo "Creating .zshrc file..."
       eval "$(starship init zsh)"
     '';
-
   };
+
 
   home.stateVersion = "24.05";
 }

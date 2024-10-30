@@ -9,6 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./dconf.nix
     ];
 
   # Bootloader.
@@ -35,9 +36,7 @@
     xkbOptions = "ctrl:swapcaps";
 
     displayManager.gdm.enable = true;
-    # displayManager.sddm.enable = true;
     desktopManager.gnome.enable = true;
-    # desktopManager.plasma5.enable = true;
   };
 
   # Enable sound with pipewire.
