@@ -9,7 +9,6 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./dconf.nix
     ];
 
   # Bootloader.
@@ -32,8 +31,8 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbOptions = "ctrl:swapcaps";
+    xkb.layout = "us";
+    xkb.options = "ctrl:swapcaps";
 
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
@@ -67,7 +66,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;  [
     gnomeExtensions.user-themes
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
@@ -91,10 +90,9 @@
     qbittorrent
     pgadmin4-desktopmode
     cmake
-    libsForQt5.qt5ct
-    libsForQt5.qtstyleplugin-kvantum
     iosevka
     commit-mono
+    fira-code
   ];
 
   services.auto-cpufreq.enable = true;

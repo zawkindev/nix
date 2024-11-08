@@ -2,7 +2,7 @@
 
 {
   imports = [
-        ./dconf.nix
+    ./dconf.nix
   ];
 
   home.username = "shahruz";
@@ -22,7 +22,6 @@
     dconf2nix
     jetbrains-toolbox
     jetbrains.idea-community-bin
-    zulu17
     upscayl
     gccgo14
     zsh
@@ -129,8 +128,6 @@
       lemminx
       yaml-language-server
       ansible-language-server
-      libsForQt5.qt5ct
-      libsForQt5.qtstyleplugin-kvantum
     ];
   };
 
@@ -160,6 +157,11 @@
     };
   };
 
+  programs.java = {
+    enable = true;
+    package = (pkgs.jdk17.override { enableJavaFX = true; });
+  };
+
   home.file = {
     "~/.ideavimrc".text = ''
         echo "Creating .ideavimrc file..."
@@ -184,8 +186,8 @@
         echo "Creating .zshrc file..."
       eval "$(starship init zsh)"
     '';
-  };
 
+  };
 
   home.stateVersion = "24.05";
 }
