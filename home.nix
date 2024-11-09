@@ -1,8 +1,12 @@
 { config, pkgs, lib, ... }:
 
+let
+  configModules = import ./config;
+in
 {
   imports = [
-    ./config
+    configModules.zsh
+    configModules.helix
   ];
 
   home.packages = with pkgs; [

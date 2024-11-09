@@ -1,3 +1,5 @@
+# flake.nix
+
 {
   description = "Unified Flake for NixOS and Arch Linux";
 
@@ -21,7 +23,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.shahruz = import ./home.nix;
-          home-manager.backupFileExtension = "backup";
         }
       ];
     };
@@ -31,12 +32,8 @@
       pkgs = import nixpkgs { system = "x86_64-linux"; };
       modules = [
        ({ config, pkgs, ... }: {
-          # Home Manager options directly in the module
           home.username = "shahruz";
           home.homeDirectory = "/home/shahruz";
-          home.useGlobalPkgs = true;
-          home.useUserPackages = true;
-          home.backupFileExtension = "backup";
         })
 
         ./home.nix
@@ -44,4 +41,5 @@
     };
   };
 }
+
 
