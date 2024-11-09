@@ -67,12 +67,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs;  [
-    gnomeExtensions.user-themes
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.appindicator
-    gnomeExtensions.topicons-plus
-    gnomeExtensions.blur-my-shell
-    gnome.gnome-tweaks
     auto-cpufreq
     powertop
     telegram-desktop
