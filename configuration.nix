@@ -75,24 +75,18 @@
     gnome.gnome-tweaks
     auto-cpufreq
     powertop
-    evdevremapkeys
-    vim
     telegram-desktop
-    neovim
-    fastfetch
-    git
-    wget
-    curl
     vscodium
-    xclip
-    nixpkgs-fmt
-    nil
     qbittorrent
     pgadmin4-desktopmode
-    cmake
     iosevka
-    commit-mono
-    fira-code
+    jetbrains-toolbox
+    jetbrains.idea-community-bin
+    upscayl
+    onlyoffice-bin
+    obs-studio
+    postman
+    telegram-desktop
   ];
 
   services.auto-cpufreq.enable = true;
