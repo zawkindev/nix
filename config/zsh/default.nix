@@ -2,7 +2,7 @@
 
 {
 
-programs.zsh = {
+  programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -25,12 +25,16 @@ programs.zsh = {
       gpsh = "git push";
       gpl = "git pull";
     };
-};
+  };
 
+  programs.starship = {
+    enable = true;
+  };
   
-home.file = {
+  home.file = {
     "~/.zshrc".text = ''
         echo "Creating .zshrc file..."
       eval "$(starship init zsh)"
     '';
-};}
+  };
+}

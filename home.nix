@@ -9,6 +9,8 @@ in
     configModules.helix
   ];
 
+  home.stateVersion = "24.05";
+
   home.packages = with pkgs; [
     neovim
     neofetch
@@ -38,21 +40,6 @@ in
     cmake
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "zawkindev";
-    userEmail = "zawkindev@gmail.com";
-  };
-
-  programs.starship = {
-    enable = true;
-  };
-
-  programs.java = {
-    enable = true;
-    package = (pkgs.jdk17.override { enableJavaFX = true; });
-  };
-  
   home.file = {
     "~/.ideavimrc".text = ''
         echo "Creating .ideavimrc file..."
@@ -73,5 +60,4 @@ in
       :map <C--> <Action>(ZoomOutIdeAction)
     '';
   };
-  home.stateVersion = "24.05";
 }
