@@ -9,9 +9,10 @@ in
     configModules.helix
     configModules.gnome
     configModules.git
+    configModules.ideavim
   ];
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
     neovim
@@ -41,25 +42,4 @@ in
     nixpkgs-fmt
     cmake
   ];
-
-  home.file = {
-    "~/.ideavimrc".text = ''
-        echo "Creating .ideavimrc file..."
-      :map fmt <Action>(ReformatCode)
-      :map mn <Action>(NextTab)
-      :map ml <Action>(PreviousTab)
-      :map ;r <Action>(FindInPath)
-      :map ;f <Action>(GotoFile)
-      :map nf <Action>(NewScratchFile)
-      :map np <Action>(WelcomeScreen.CreateDirectoryProject)
-      :map op <Action>($LRU)
-      :map sv <Action>(SplitVertically)
-      :map ss <Action>(SplitHorizontally)
-      :map sc <Action>(Unsplit)
-      
-      :map <C-t> <Action>(ActivateProjectToolWindow)
-      :map <C-=> <Action>(ZoomInIdeAction)
-      :map <C--> <Action>(ZoomOutIdeAction)
-    '';
-  };
 }
