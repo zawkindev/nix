@@ -11,7 +11,6 @@
       :map ;f <Action>(GotoFile)
       :map nf <Action>(NewScratchFile)
       :map np <Action>(WelcomeScreen.CreateDirectoryProject)
-      :map op <Action>($LRU)
       :map sv <Action>(SplitVertically)
       :map ss <Action>(SplitHorizontally)
       :map sc <Action>(Unsplit)
