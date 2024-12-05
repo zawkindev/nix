@@ -7,6 +7,8 @@ in
   imports = [
     configModules.zsh
     configModules.helix
+    configModules.gnome
+    configModules.git
   ];
 
   home.stateVersion = "24.05";

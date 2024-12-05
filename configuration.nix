@@ -67,7 +67,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs;  [
-    auto-cpufreq
     powertop
     telegram-desktop
     vscodium
@@ -83,8 +82,7 @@
     telegram-desktop
   ];
 
-  services.auto-cpufreq.enable = true;
-  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+  services.udev.packages = [ pkgs.gnome-settings-daemon ];
   users.defaultUserShell = pkgs.zsh;
 
   services.postgresql = {
@@ -112,5 +110,5 @@
     };
   };
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

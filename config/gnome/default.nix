@@ -5,11 +5,8 @@
     ./dconf.nix
   ];
 
-  programs.gnomeExtensions.enable = true;  
-
-  environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
-    gnome.gnome-shell-extensions
+  home.packages = with pkgs; [
+    gnome-tweaks
     gnomeExtensions.user-themes
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
