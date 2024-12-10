@@ -10,6 +10,7 @@ in
     configModules.gnome
     configModules.git
     configModules.ideavim
+    configModules.nixvim
   ];
 
   home.stateVersion = "24.11";
@@ -43,16 +44,4 @@ in
     openjdk17
     fira-code-nerdfont
   ];
-
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    luaLoader.enable = true;
-      
-    colorschemes.base16.enable = true;
-    colorschemes.base16.colorscheme = "material-darker";
-    plugins.lualine.enable = true;
-  };
 }
