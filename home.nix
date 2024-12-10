@@ -1,12 +1,10 @@
-{ pkgs, nixvim, ... }:
+{ pkgs, ... }:
 
 let
   configModules = import ./config;
 in
 {
   imports = [
-
-    nixvim.homeManagerModules.nixvim
     configModules.zsh
     configModules.helix
     configModules.gnome
@@ -17,7 +15,6 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-    neovim
     neofetch
     ripgrep
     htop
@@ -36,7 +33,6 @@ in
     ripgrep
     cargo
     vim
-    neovim
     git
     wget
     curl
@@ -45,14 +41,18 @@ in
     cmake
     maven
     openjdk17
+    fira-code-nerdfont
   ];
 
   programs.nixvim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-
-      luaLoader.enable = true;
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    luaLoader.enable = true;
+      
+    colorschemes.base16.enable = true;
+    colorschemes.base16.colorscheme = "material-darker";
+    plugins.lualine.enable = true;
   };
 }
