@@ -35,7 +35,10 @@
     xkb.options = "ctrl:swapcaps";
 
     displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    desktopManager = {
+      gnome.enable = true;
+      xfce.enable = true;
+    };
   };
 
   # Enable sound with pipewire.
@@ -80,6 +83,9 @@
     obs-studio
     postman
     telegram-desktop
+    openjdk17        # Java JDK
+    gimp
+    ventoy-full
   ];
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
@@ -88,7 +94,7 @@
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_16;
-    ensureDatabases = [ "b1_db" ];
+    ensureDatabases = [ "hamyon" ];
     enableTCPIP = true;
     authentication = pkgs.lib.mkOverride 10 ''
       local all      all                    trust

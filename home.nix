@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, nixvim, ... }:
 
 let
   configModules = import ./config;
 in
 {
   imports = [
+
+    nixvim.homeManagerModules.nixvim
     configModules.zsh
     configModules.helix
     configModules.gnome
@@ -41,5 +43,16 @@ in
     xclip
     nixpkgs-fmt
     cmake
+    maven
+    openjdk17
   ];
+
+  programs.nixvim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+
+      luaLoader.enable = true;
+  };
 }
