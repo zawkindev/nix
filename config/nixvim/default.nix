@@ -1,6 +1,13 @@
 { ... }:
 
 {
+
+  imports  = [
+    ./option.nix
+    ./plugin.nix
+    ./map.nix
+  ];
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
