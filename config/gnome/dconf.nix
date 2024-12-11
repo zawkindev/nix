@@ -6,15 +6,38 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/Console" = {
-      custom-font = "Hack 10";
-      font-scale = 1.5;
+      custom-font = "FiraCode Nerd Font 14";
+      font-scale = 1.0;
       last-window-maximised = false;
-      last-window-size = mkTuple [ 1010 646 ];
+      last-window-size = mkTuple [ 1270 811 ];
       use-system-font = false;
+    };
+
+    "org/gnome/Geary" = {
+      compose-as-html = true;
+      formatting-toolbar-visible = false;
+      migrated-config = true;
     };
 
     "org/gnome/Loupe" = {
       show-properties = true;
+    };
+
+    "org/gnome/calculator" = {
+      accuracy = 9;
+      angle-units = "degrees";
+      base = 10;
+      button-mode = "basic";
+      number-format = "automatic";
+      show-thousands = false;
+      show-zeroes = false;
+      source-currency = "";
+      source-units = "degree";
+      target-currency = "";
+      target-units = "radian";
+      window-maximized = false;
+      window-size = mkTuple [ 360 507 ];
+      word-size = 64;
     };
 
     "org/gnome/control-center" = {
@@ -63,6 +86,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       cursor-theme = "Adwaita";
+      font-name = "Cantarell 12";
       gtk-theme = "Adwaita";
       icon-theme = "Adwaita";
       monospace-font-name = "Hack 12";
@@ -70,11 +94,15 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "org-telegram-desktop" "firefox" "gnome-power-panel" "org-gnome-console" "idea-community" "org-gnome-tweaks" ];
+      application-children = [ "org-telegram-desktop" "firefox" "gnome-power-panel" "org-gnome-console" "idea-community" "org-gnome-tweaks" "org-gnome-nautilus" ];
     };
 
     "org/gnome/desktop/notifications/application/firefox" = {
       application-id = "firefox.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/gimp" = {
+      application-id = "gimp.desktop";
     };
 
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
@@ -135,6 +163,7 @@ with lib.hm.gvariant;
       move-to-workspace-right = [ "<Shift><Alt>l" ];
       switch-to-workspace-left = [ "<Control><Alt>h" ];
       switch-to-workspace-right = [ "<Control><Alt>l" ];
+      toggle-fullscreen = [ "<Super>f" ];
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -154,6 +183,33 @@ with lib.hm.gvariant;
 
     "org/gnome/evolution-data-server" = {
       migrated = true;
+    };
+
+    "org/gnome/file-roller/dialogs/extract" = {
+      height = 800;
+      recreate-folders = true;
+      skip-newer = false;
+      width = 1000;
+    };
+
+    "org/gnome/file-roller/file-selector" = {
+      show-hidden = false;
+      sidebar-size = 300;
+      window-size = mkTuple [ (-1) (-1) ];
+    };
+
+    "org/gnome/file-roller/listing" = {
+      list-mode = "as-folder";
+      name-column-width = 68;
+      show-path = false;
+      sort-method = "name";
+      sort-type = "ascending";
+    };
+
+    "org/gnome/file-roller/ui" = {
+      sidebar-width = 200;
+      window-height = 480;
+      window-width = 600;
     };
 
     "org/gnome/gnome-system-monitor" = {
@@ -177,6 +233,10 @@ with lib.hm.gvariant;
       center-new-windows = true;
     };
 
+    "org/gnome/nautilus/list-view" = {
+      default-zoom-level = "small";
+    };
+
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
       migrated-gtk-settings = true;
@@ -187,16 +247,26 @@ with lib.hm.gvariant;
       initial-size = mkTuple [ 890 550 ];
     };
 
+    "org/gnome/nm-applet" = {
+      disable-connected-notifications = true;
+    };
+
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-schedule-automatic = false;
+    };
+
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
       power-saver-profile-on-low-battery = false;
+      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-battery-type = "nothing";
     };
 
     "org/gnome/shell" = {
       disabled-extensions = [ "places-menu@gnome-shell-extensions.gcampax.github.com" "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [ "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "dock-from-dash@fthx" "trayIconsReloaded@selfmade.pl" "system-monitor@gnome-shell-extensions.gcampax.github.com" "TopIcons@phocean.net" "appindicatorsupport@rgcjonas.gmail.com" "dash-to-dock@micxgx.gmail.com" "blur-my-shell@aunetx" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "idea-community.desktop" "org.gnome.Console.desktop" "org.telegram.desktop.desktop" ];
-      last-selected-power-profile = "performance";
+      last-selected-power-profile = "power-saver";
       welcome-dialog-last-shown-version = "46.2";
     };
 
