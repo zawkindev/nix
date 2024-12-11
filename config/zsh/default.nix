@@ -24,6 +24,8 @@
       gcm = "git commit -m";
       gpsh = "git push";
       gpl = "git pull";
+      vim = "nvim";
+      vi = "nvim";
     };
   };
 

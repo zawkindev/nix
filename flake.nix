@@ -1,5 +1,3 @@
-# flake.nix
-
 {
   description = "Unified Flake for NixOS and Arch Linux";
 
@@ -19,37 +17,54 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, alacritty-theme, nixvim, ... }@inputs: {
-    # Configuration for NixOS
-    nixosConfigurations.asuna = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
+  outputs = { self, nixpkgs, home-manager, alacritty-theme, nixvim, ... }@inputs:
 
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.shahruz = import ./home.nix;
-          home-manager.sharedModules = [
-            nixvim.homeManagerModules.nixvim
+    {
+      # Configuration for NixOS
+      nixosConfigurations.asuna = nixpkgs.lib.nixosSystem
+
+        {
+          system = "x86_64-linux";
+          modules = [
+            nixvim.nixosModules.nixvim
+
+            ./nixvim
+
+            ./configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.shahruz = import ./home.nix;
+              # home-manager.sharedModules = [
+              #   nixvim.homeManagerModules.nixvim
+              # ];
+            }
+
+            # Custom module for symlinks
+            ({ config, pkgs, lib, ... }: {
+              system.activationScripts.nixvimSymlinks.text = ''
+                mkdir -p /usr/local/bin
+                ln -sf ${pkgs.neovim}/bin/nvim /usr/local/bin/vim
+                ln -sf ${pkgs.neovim}/bin/nvim /usr/local/bin/vi
+              '';
+            })
           ];
-        }
-      ];
-    };
+        };
 
-    # Configuration for non-NixOS (e.g., Arch Linux)
-    homeConfigurations.shahruz = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
-      modules = [
-       ({ config, pkgs, ... }: {
-          home.username = "shahruz";
-          home.homeDirectory = "/home/shahruz";
-        })
+      # Configuration for non-NixOS (e.g., Arch Linux)
+      homeConfigurations.shahruz = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        modules = [
+          ({ config, pkgs, ... }: {
+            home.username = "shahruz";
+            home.homeDirectory = "/home/shahruz";
+          })
 
-        ./home.nix
-      ];
+          ./home.nix
+        ];
+      };
     };
-  };
 }
-
 
