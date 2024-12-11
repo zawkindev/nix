@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
 
-programs.nixvim.plugins = {  bufferline = {
+programs.nixvim.plugins = {
+  bufferline = {
     enable = true;
   };
 
@@ -42,79 +43,33 @@ programs.nixvim.plugins = {  bufferline = {
     settings.current_line_blame = true;
   };
 
+  # Snippets
+  luasnip = {
+    enable = true;
+    settings = {
+      enable_autosnippets = true;
+      store_selection_keys = "<Tab>";
+    };
+  };
+
+  friendly-snippets.enable = true;
+
   # Markdown preview server
   markdown-preview = {
     enable = true;
-    settings.theme = "dark";
+    settings = {
+      browser = "firefox";
+      echo_preview_url = 1;
+      port = "6969";
+      preview_options = {
+        disable_filename = 1;
+        disable_sync_scroll = 1;
+        sync_scroll_type = "middle";
+      };
+      theme = "dark";
+    };
   };
-
-    render-markdown = {
-      enable = true;
-      settings = {
-        enabled = true; # This lets you set whether the plugin should render documents from the start or not. Useful if you want to use a command like RenderMarkdown enable to start rendering documents rather than having it on by default.
-        bullet = {
-          icons = [
-            "•"
-          ];
-          right_pad = 1;
-        };
-        code = {
-          above = " ";
-          below = " ";
-          border = "thick";
-          language_pad = 2;
-          left_pad = 2;
-          position = "right";
-          right_pad = 2;
-          sign = false;
-          width = "block";
-        };
-        heading = {
-          border = true;
-          icons = [
-            "1 "
-            "2 "
-            "3 "
-            "4 "
-            "5 "
-            "6 "
-          ];
-          position = "inline";
-          sign = false;
-          width = "full";
-        };
-        render_modes = true;
-        signs = {
-          enabled = false;
-        };
-      };
-    };
-
-    image = {
-      enable = true;
-      backend = "kitty";
-      hijackFilePatterns = [
-        "*.png"
-        "*.jpg"
-        "*.jpeg"
-        "*.gif"
-        "*.webp"
-      ];
-      maxHeightWindowPercentage = 25;
-      tmuxShowOnlyInActiveWindow = true;
-      integrations = {
-        markdown = {
-          enabled = true;
-          downloadRemoteImages = true;
-          filetypes = [
-            "markdown"
-            "vimwiki"
-            "mdx"
-          ];
-        };
-      };
-    };
-
+  
     # Good old Telescope
     telescope = {
       enable = true;
@@ -169,7 +124,13 @@ programs.nixvim.plugins = {  bufferline = {
       enable = true;
     };
 
- # Language server
+    # java
+    nvim-jdtls = {
+      enable = true;
+      cmd = ["${pkgs.jdt-language-server}/bin/jdtls"];
+    };
+
+    # Language server
     lsp = {
       enable = true;
       servers = {
@@ -186,6 +147,7 @@ programs.nixvim.plugins = {  bufferline = {
         pyright.enable = true; # Python
         marksman.enable = true; # Markdown
         nil_ls.enable = true; # Nix
+        jsonls.enable = true; #Json
         dockerls.enable = true; # Docker
         bashls.enable = true; # Bash
         clangd.enable = true; # C/C++
@@ -210,6 +172,17 @@ programs.nixvim.plugins = {  bufferline = {
       };
     };
 
+    lspkind = {
+      enable = false;
+      symbolMap = {
+        Copilot = "";
+      };
+      extraOptions = {
+        maxwidth = 50;
+        ellipsis_char = "...";
+      };
+    };
+      
     cmp = {
       enable = true;
       settings = {
@@ -242,6 +215,8 @@ programs.nixvim.plugins = {  bufferline = {
             keywordLength = 3;
           }
         ];
+
+        snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
 
         window = {
           completion = { border = "solid"; };

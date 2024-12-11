@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
 
@@ -16,12 +16,24 @@
     luaLoader.enable = true;
 
     colorschemes = {
-      base16.enable = true;
-      base16.colorscheme = "material-darker";
+      base16 = {
+        enable = true;      
+        colorscheme = "material-darker";
+        settings = {
+          cmp = true;
+          illuminate = true;
+          indentblankline = true;
+          lsp_semantic = true;
+          mini_completion = true;
+          telescope = true;
+          telescope_borders = false;
+        };
+      };
     };
-      
-    plugins = {
-      lualine.enable = true;
-    };
+
+    extraPackages = with pkgs;[
+      jdt-language-server
+      ueberzugpp
+    ];
   };
 }

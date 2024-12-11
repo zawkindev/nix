@@ -157,6 +157,23 @@ programs.nixvim = {
        key = "sl";
        action = "<C-w>l";
      }
+     {
+       mode = "n";
+       key = "fmt";
+       action = ":lua vim.lsp.buf.format()<Return>";
+       options = {
+         noremap = true;
+         silent = true;
+       };     
+     }
+     {
+       mode = "n";
+       key = "<leader>p";
+       action = "<cmd>MarkdownPreviewToggle<cr>";
+       options = {
+         desc = "Toggle Markdown Preview";
+       };
+     }
   ];
 };
 }
