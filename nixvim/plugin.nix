@@ -3,6 +3,12 @@
 {
 
 programs.nixvim.plugins = {
+
+  # fix: close last tab without exiting neovim
+  vim-bbye = {
+    enable = true;
+  };
+
   bufferline = {
     enable = true;
   };

@@ -76,7 +76,7 @@ programs.nixvim = {
     {
       mode = "n";
       key = "mk";
-      action = "<cmd>bdelete<cr>";
+      action = ":Bdelete<cr>";
       options = {
         desc = "Delete buffer";
       };
