@@ -16,9 +16,7 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-    neofetch
     ripgrep
-    htop
     git
     zsh
     starship
@@ -33,15 +31,12 @@ in
     python312
     ripgrep
     cargo
-    vim
     git
     wget
     curl
     xclip
     nixpkgs-fmt
     cmake
-    maven
-    openjdk17
     fira-code-nerdfont
   ];
 }

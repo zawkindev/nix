@@ -61,6 +61,10 @@
             home.username = "shahruz";
             home.homeDirectory = "/home/shahruz";
           })
+          
+          nixvim.homeManagerModules.nixvim
+
+          ./nixvim
 
           ./home.nix
         ];
