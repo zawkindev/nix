@@ -2,80 +2,79 @@
 
 {
 
-programs.nixvim.plugins = {
-
-  # fix: close last tab without exiting neovim
-  vim-bbye = {
-    enable = true;
-  };
-
-  bufferline = {
-    enable = true;
-  };
-
-  lualine = {
+  programs.nixvim.plugins = {
+    # fix: close last tab without exiting neovim
+    vim-bbye = {
       enable = true;
-  };
-
-   # Includes all parsers for treesitter
-  treesitter = {
-    enable = true;
-  };
-
-  # Icons 
-  web-devicons.enable = true;
-
-  # Auto-tagging
-  ts-autotag = {
-    enable = true;
-  };
-
-  # Autopairs
-  nvim-autopairs = {
-    enable = true;
-  };
-
-  # Lazygit
-  lazygit = {
-    enable = true;
-  };
-
-  # Easily toggle comments
-  commentary.enable = true;
-
-  # Git signs in code
-  gitsigns = {
-    enable = true;
-    settings.current_line_blame = true;
-  };
-
-  # Snippets
-  luasnip = {
-    enable = true;
-    settings = {
-      enable_autosnippets = true;
-      store_selection_keys = "<Tab>";
     };
-  };
 
-  friendly-snippets.enable = true;
+    bufferline = {
+      enable = true;
+    };
 
-  # Markdown preview server
-  markdown-preview = {
-    enable = true;
-    settings = {
-      browser = "firefox";
-      echo_preview_url = 1;
-      port = "6969";
-      preview_options = {
-        disable_filename = 1;
-        disable_sync_scroll = 1;
-        sync_scroll_type = "middle";
+    lualine = {
+      enable = true;
+    };
+
+    # Includes all parsers for treesitter
+    treesitter = {
+      enable = true;
+    };
+
+    # Icons 
+    web-devicons.enable = true;
+
+    # Auto-tagging
+    ts-autotag = {
+      enable = true;
+    };
+
+    # Autopairs
+    nvim-autopairs = {
+      enable = true;
+    };
+
+    # Lazygit
+    lazygit = {
+      enable = true;
+    };
+
+    # Easily toggle comments
+    commentary.enable = true;
+
+    # Git signs in code
+    gitsigns = {
+      enable = true;
+      settings.current_line_blame = true;
+    };
+
+    # Snippets
+    luasnip = {
+      enable = true;
+      settings = {
+        enable_autosnippets = true;
+        store_selection_keys = "<Tab>";
       };
-      theme = "dark";
     };
-  };
-  
+
+    friendly-snippets.enable = true;
+
+    # Markdown preview server
+    markdown-preview = {
+      enable = true;
+      settings = {
+        browser = "firefox";
+        echo_preview_url = 1;
+        port = "6969";
+        preview_options = {
+          disable_filename = 1;
+          disable_sync_scroll = 1;
+          sync_scroll_type = "middle";
+        };
+        theme = "dark";
+      };
+    };
+
     # Good old Telescope
     telescope = {
       enable = true;
@@ -90,12 +89,12 @@ programs.nixvim.plugins = {
     todo-comments = {
       enable = true;
       settings.colors = {
-        error = ["DiagnosticError" "ErrorMsg" "#DC2626"];
-        warning = ["DiagnosticWarn" "WarningMsg" "#FBBF24"];
-        info = ["DiagnosticInfo" "#2563EB"];
-        hint = ["DiagnosticHint" "#10B981"];
-        default = ["Identifier" "#7C3AED"];
-        test = ["Identifier" "#FF00FF"];
+        error = [ "DiagnosticError" "ErrorMsg" "#DC2626" ];
+        warning = [ "DiagnosticWarn" "WarningMsg" "#FBBF24" ];
+        info = [ "DiagnosticInfo" "#2563EB" ];
+        hint = [ "DiagnosticHint" "#10B981" ];
+        default = [ "Identifier" "#7C3AED" ];
+        test = [ "Identifier" "#FF00FF" ];
       };
     };
 
@@ -125,7 +124,7 @@ programs.nixvim.plugins = {
       };
     };
 
-     # Nix expressions in Neovim
+    # Nix expressions in Neovim
     nix = {
       enable = true;
     };
@@ -133,7 +132,7 @@ programs.nixvim.plugins = {
     # java
     nvim-jdtls = {
       enable = true;
-      cmd = ["${pkgs.jdt-language-server}/bin/jdtls"];
+      cmd = [ "${pkgs.jdt-language-server}/bin/jdtls" ];
     };
 
     # Language server
@@ -159,15 +158,18 @@ programs.nixvim.plugins = {
         clangd.enable = true; # C/C++
         csharp_ls.enable = true; # C#
         yamlls.enable = true; # YAML
-        gopls = { # Golang
+        servers.sqlls.enable = true; #SQL
+        gopls = {
+          # Golang
           enable = true;
           autostart = true;
         };
         nil_ls = {
           enable = true;
-          settings.formatting.command = ["nixpkgs-fmt"];
+          settings.formatting.command = [ "nixpkgs-fmt" ];
         }; # Nix
-        lua_ls = { # Lua
+        lua_ls = {
+          # Lua
           enable = true;
           settings.telemetry.enable = false;
         };
@@ -191,7 +193,7 @@ programs.nixvim.plugins = {
         ellipsis_char = "...";
       };
     };
-      
+
     cmp = {
       enable = true;
       settings = {
@@ -264,6 +266,6 @@ programs.nixvim.plugins = {
     };
     cmp-cmdline = {
       enable = true; # autocomplete for cmdline
-    }; 
+    };
   };
 }
