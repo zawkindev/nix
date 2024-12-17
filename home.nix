@@ -10,7 +10,7 @@ in
     configModules.gnome
     configModules.git
     configModules.ideavim
-    import ./nixvim
+    # import ./nixvim
   ];
 
   home.stateVersion = "24.11";

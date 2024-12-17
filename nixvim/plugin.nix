@@ -158,7 +158,10 @@
         clangd.enable = true; # C/C++
         csharp_ls.enable = true; # C#
         yamlls.enable = true; # YAML
-        servers.sqlls.enable = true; #SQL
+        sqlls = {
+          enable = true;
+          package = pkgs.sqls;
+        }; #SQL
         gopls = {
           # Golang
           enable = true;
