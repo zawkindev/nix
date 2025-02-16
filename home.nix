@@ -10,6 +10,7 @@ in
     configModules.gnome
     configModules.git
     configModules.ideavim
+    configModules.vscode # vscode-ni lsp ko'rmayapti
     # import ./nixvim
   ];
 
@@ -37,6 +38,18 @@ in
     xclip
     nixpkgs-fmt
     cmake
+    haskell.compiler.native-bignum.ghcHEAD
     fira-code-nerdfont
+    rose-pine-cursor
+    numix-cursor-theme
+    posy-cursors
+    mint-cursor-themes
+    cbonsai
   ];
+
+  home.file.".xprofile" = {
+    source = pkgs.writeText "xprofile" ''
+      setxkbmap -option ctrl:swapcaps
+    '';
+  };
 }

@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -32,7 +31,7 @@
   programs.starship = {
     enable = true;
   };
-  
+
   home.file = {
     "~/.zshrc".text = ''
         echo "Creating .zshrc file..."

@@ -18,7 +18,13 @@
   };
 
   outputs = { self, nixpkgs, home-manager, alacritty-theme, nixvim, ... }@inputs:
-
+    let
+      # Define a function to import nixpkgs with allowUnfree enabled
+      pkgsFor = system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
     {
       # Configuration for NixOS
       nixosConfigurations.asuna = nixpkgs.lib.nixosSystem
@@ -42,6 +48,12 @@
               # ];
             }
 
+            # Enable allowUnfree for NixOS
+            ({ config, pkgs, ... }: {
+              nixpkgs.config.allowUnfree = true;
+            })
+
+
             # Custom module for symlinks
             ({ config, pkgs, lib, ... }: {
               system.activationScripts.nixvimSymlinks.text = ''
@@ -55,13 +67,13 @@
 
       # Configuration for non-NixOS (e.g., Arch Linux)
       homeConfigurations.shahruz = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        pkgs = pkgsFor "x86_64-linux";
         modules = [
           ({ config, pkgs, ... }: {
             home.username = "shahruz";
             home.homeDirectory = "/home/shahruz";
           })
-          
+
           nixvim.homeManagerModules.nixvim
 
           ./nixvim

@@ -4,4 +4,5 @@
   gnome = import ./gnome;
   git = import ./git;
   ideavim = import ./ideavim;
+  vscode = import ./vscode;
 }

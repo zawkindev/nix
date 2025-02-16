@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-programs.helix = {
+  programs.helix = {
     enable = true;
 
     settings = {
@@ -46,7 +46,7 @@ programs.helix = {
       yaml-language-server
       ansible-language-server
     ];
-};
+  };
 
 
 }

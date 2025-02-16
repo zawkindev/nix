@@ -158,6 +158,10 @@
         clangd.enable = true; # C/C++
         csharp_ls.enable = true; # C#
         yamlls.enable = true; # YAML
+        hls = {
+          enable = true;
+          installGhc = true;
+        };
         sqlls = {
           enable = true;
           package = pkgs.sqls;
