@@ -1,15 +1,18 @@
 { pkgs, ... }:
 
 {
-
   programs.nixvim.plugins = {
-    # fix: close last tab without exiting neovim
-    vim-bbye = {
-      enable = true;
-    };
+    bufdelete.enable = true;
 
     bufferline = {
       enable = true;
+      settings = {
+        options = {
+          show_buffer_close_icons = false;
+          show_tab_indicators = false;
+          show_close_icon = false;
+        };
+      };
     };
 
     lualine = {
@@ -105,7 +108,7 @@
       enableGitStatus = true;
       enableModifiedMarkers = true;
       enableRefreshOnWrite = true;
-      closeIfLastWindow = true;
+      closeIfLastWindow = false;
       popupBorderStyle = "rounded"; # Type: null or one of “NC”, “double”, “none”, “rounded”, “shadow”, “single”, “solid” or raw lua code
       buffers = {
         bindToCwd = false;

@@ -17,6 +17,7 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
+    hypnotix
     ripgrep
     git
     zsh
@@ -38,14 +39,10 @@ in
     xclip
     nixpkgs-fmt
     cmake
-    haskell.compiler.native-bignum.ghcHEAD
     fira-code-nerdfont
-    rose-pine-cursor
-    numix-cursor-theme
-    posy-cursors
-    mint-cursor-themes
     cbonsai
     libsForQt5.qtcurve
+    go
   ];
 
   home.keyboard.options = [ "ctrl:swapcaps" ];
@@ -62,7 +59,7 @@ in
 
   home.file.".config/kwinrc" = {
     source = pkgs.writeText "kwinrc" ''
-          [Desktops]
+      [Desktops]
       Number=4
       Rows=2
 
@@ -72,7 +69,6 @@ in
 
   programs.vscode = {
     enable = true;
-    # package = pkgs.vscodium;
     extensions = with pkgs; [
       vscode-extensions.haskell.haskell
       vscode-extensions.asvetliakov.vscode-neovim

@@ -180,6 +180,35 @@
         key = "<leader>h";
         action = ":noh<CR>";
       }
+
+      # Go to definition
+      {
+        mode = "n";
+        key = "gd";
+        action = "<cmd>lua vim.lsp.buf.definition()<CR>";
+        options = { noremap = true; silent = true; };
+      }
+      # Go to declaration
+      {
+        mode = "n";
+        key = "gD";
+        action = "<cmd>lua vim.lsp.buf.declaration()<CR>";
+        options = { noremap = true; silent = true; };
+      }
+      # Go to implementation
+      {
+        mode = "n";
+        key = "gi";
+        action = "<cmd>lua vim.lsp.buf.implementation()<CR>";
+        options = { noremap = true; silent = true; };
+      }
+      # Go to references
+      {
+        mode = "n";
+        key = "gr";
+        action = "<cmd>lua vim.lsp.buf.references()<CR>";
+        options = { noremap = true; silent = true; };
+      }
     ];
   };
 }

@@ -30,6 +30,11 @@
 
   programs.starship = {
     enable = true;
+    settings = {
+      golang = {
+        symbol = "󰟓 ";
+      };
+    };
   };
 
   home.file = {
