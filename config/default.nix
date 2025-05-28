@@ -5,4 +5,5 @@
   git = import ./git;
   ideavim = import ./ideavim;
   vscode = import ./vscode;
+  plasma = import ./plasma;
 }

@@ -10,6 +10,7 @@ in
     configModules.gnome
     configModules.git
     configModules.ideavim
+    configModules.plasma
     # configModules.vscode # vscode-ni lsp ko'rmayapti
     # import ./nixvim
   ];
@@ -17,12 +18,20 @@ in
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-    hypnotix
+    ffmpegthumbs
+    okular
+    poppler
+    imagemagick
+    inkscape-with-extensions
+    vlc
+    scrcpy
+    flameshot
+    anydesk
+    neofetch
     ripgrep
     git
     zsh
     starship
-    hack-font
     dconf2nix
     gccgo14
     zsh
@@ -46,26 +55,6 @@ in
   ];
 
   home.keyboard.options = [ "ctrl:swapcaps" ];
-
-  home.file.".config/kglobalshortcutsrc" = {
-    source = pkgs.writeText "kglobalshortcutsrc" ''
-      [kwin]
-      Switch to Next Desktop=Ctrl+Alt+L,none,Switch to Next Desktop
-      Switch to Previous Desktop=Ctrl+Alt+H,none,Switch to Previous Desktop
-      Switch One Desktop Up=Ctrl+Alt+K,none,Switch One Desktop Up
-      Switch One Desktop Down=Ctrl+Alt+J,none,Switch One Desktop Down
-    '';
-  };
-
-  home.file.".config/kwinrc" = {
-    source = pkgs.writeText "kwinrc" ''
-      [Desktops]
-      Number=4
-      Rows=2
-
-    '';
-  };
-
 
   programs.vscode = {
     enable = true;

@@ -15,59 +15,67 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, alacritty-theme, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, alacritty-theme, nixvim, hyprland, plasma-manager, apple-fonts, ... }@inputs:
     let
-      # Define a function to import nixpkgs with allowUnfree enabled
-      pkgsFor = system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      appleFonts = apple-fonts.packages.${system};
     in
     {
       # Configuration for NixOS
-      nixosConfigurations.asuna = nixpkgs.lib.nixosSystem
+      nixosConfigurations.tya = nixpkgs.lib.nixosSystem rec {
+        inherit system;
+        specialArgs = { inherit hyprland; };
+        modules = [
+          nixvim.nixosModules.nixvim
+          hyprland.nixosModules.default
+          home-manager.nixosModules.home-manager
+          ./nixvim
+          ./configuration.nix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.shahruz = import ./home.nix;
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+            environment.systemPackages = [
+              appleFonts."sf-pro"
+              appleFonts."sf-mono-nerd"
+            ];
+          }
 
-        {
-          system = "x86_64-linux";
-          modules = [
-            nixvim.nixosModules.nixvim
-
-            ./nixvim
-
-            ./configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.shahruz = import ./home.nix;
-              # home-manager.sharedModules = [
-              #   nixvim.homeManagerModules.nixvim
-              # ];
-            }
-
-            # Enable allowUnfree for NixOS
-            ({ config, pkgs, ... }: {
-              nixpkgs.config.allowUnfree = true;
-            })
+          # Enable allowUnfree for NixOS
+          ({ config, pkgs, ... }: {
+            nixpkgs.config.allowUnfree = true;
+          })
 
 
-            # Custom module for symlinks
-            ({ config, pkgs, lib, ... }: {
-              system.activationScripts.nixvimSymlinks.text = ''
-                mkdir -p /usr/local/bin
-                ln -sf ${pkgs.neovim}/bin/nvim /usr/local/bin/vim
-                ln -sf ${pkgs.neovim}/bin/nvim /usr/local/bin/vi
-              '';
-            })
-          ];
-        };
+          # Custom module for symlinks
+          ({ config, pkgs, lib, ... }: {
+            system.activationScripts.nixvimSymlinks.text = ''
+              mkdir -p /usr/local/bin
+              ln -sf ${pkgs.neovim}/bin/nvim /usr/local/bin/vim
+              ln -sf ${pkgs.neovim}/bin/nvim /usr/local/bin/vi
+            '';
+          })
+        ];
+      };
 
       # Configuration for non-NixOS (e.g., Arch Linux)
       homeConfigurations.shahruz = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor "x86_64-linux";
+        inherit pkgs;
         modules = [
           ({ config, pkgs, ... }: {
             home.username = "shahruz";

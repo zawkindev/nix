@@ -11,6 +11,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # ./nvidia.nix
     ];
 
   # Bootloader.
@@ -18,9 +19,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
-  networking.hostName = "asuna"; # Define your hostname.
+  networking.hostName = "tya"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
 
@@ -38,7 +40,7 @@
 
     displayManager.gdm.enable = true;
     desktopManager = {
-      xfce.enable = true;
+      gnome.enable = true;
     };
   };
 
@@ -62,13 +64,17 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       #  thunderbird
+      fuse3
+      unityhub
+      libsForQt5.kdenlive
     ];
   };
 
+  # users.users.yourUserName.extraGroups = [ "fuse" ];
+
   programs.firefox.enable = true;
   programs.zsh.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
+  programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs;  [
     powertop
@@ -84,7 +90,7 @@
     obs-studio
     postman
     telegram-desktop
-    openjdk17        # Java JDK
+    openjdk17 # Java JDK
     gimp
     ventoy-full
   ];
@@ -94,18 +100,17 @@
 
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_16;
-    ensureDatabases = [ "hamyon" ];
+    package = pkgs.postgresql_14;
+    ensureDatabases = [ "gardening" ];
     enableTCPIP = true;
     authentication = pkgs.lib.mkOverride 10 ''
       local all      all                    trust
       host  all      all     127.0.0.1/32   trust
       host  all      all     ::1/128        trust
     '';
-    initialScript = pkgs.writeText "backend-initScript" ''
-      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
-      CREATE DATABASE nixcloud;
-      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
+    initialScript = pkgs.writeText "gardening-initScript" ''
+      CREATE ROLE gardening_user WITH LOGIN PASSWORD 'G&(69qaklsjdb' CREATEDB;
+      GRANT ALL PRIVILEGES ON DATABASE gardening TO gardening_user;
     '';
   };
 
