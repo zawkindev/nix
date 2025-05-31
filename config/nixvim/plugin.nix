@@ -133,8 +133,8 @@
     };
 
     # java
-    nvim-jdtls = {
-      enable = true;
+    jdtls.enable = true;
+    jdtls.settings = {
       cmd = [ "${pkgs.jdt-language-server}/bin/jdtls" ];
     };
 

@@ -5,6 +5,8 @@
     ./dconf.nix
   ];
 
+  qt.platformTheme = "gnome";
+
   home.packages = with pkgs; [
     gnomeExtensions.user-themes
     gnomeExtensions.dash-to-dock

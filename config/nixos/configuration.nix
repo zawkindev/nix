@@ -4,16 +4,7 @@
 
 { pkgs, ... }:
 
-
-
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # ./nvidia.nix
-    ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -45,7 +36,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -66,7 +57,6 @@
       #  thunderbird
       fuse3
       unityhub
-      libsForQt5.kdenlive
     ];
   };
 
@@ -81,19 +71,19 @@
     telegram-desktop
     vscodium
     qbittorrent
-    pgadmin4-desktopmode
-    iosevka
-    jetbrains-toolbox
-    jetbrains.idea-community-bin
     upscayl
     onlyoffice-bin
     obs-studio
     postman
     telegram-desktop
-    openjdk17 # Java JDK
+    openjdk17
     gimp
-    ventoy-full
+    ntfs3g
+    udisks2
+    gnome.gvfs
   ];
+
+  services.udisks2.enable = true;
 
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
   users.defaultUserShell = pkgs.zsh;
@@ -122,5 +112,5 @@
     };
   };
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

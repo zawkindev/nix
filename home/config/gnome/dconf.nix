@@ -5,6 +5,10 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
+    "com/github/johnfactotum/Foliate/window" = {
+      maximized = false;
+    };
+
     "org/gnome/Console" = {
       custom-font = "FiraCode Nerd Font 14";
       font-scale = 1.0;
@@ -41,7 +45,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "color";
+      last-panel = "mouse";
       window-state = mkTuple [ 980 640 false ];
     };
 
@@ -77,6 +81,16 @@ with lib.hm.gvariant;
       secondary-color = "#000000";
     };
 
+    "org/gnome/desktop/break-reminders/eyesight" = {
+      play-sound = true;
+    };
+
+    "org/gnome/desktop/break-reminders/movement" = {
+      duration-seconds = mkUint32 300;
+      interval-seconds = mkUint32 1800;
+      play-sound = true;
+    };
+
     "org/gnome/desktop/input-sources" = {
       show-all-sources = true;
       sources = [ (mkTuple [ "xkb" "us" ]) ];
@@ -86,10 +100,13 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       cursor-theme = "Adwaita";
-      font-name = "Cantarell 12";
+      font-antialiasing = "rgba";
+      font-hinting = "slight";
+      font-name = "Adwaita Sans 12";
+      gtk-key-theme = "Default";
       gtk-theme = "Adwaita";
       icon-theme = "Adwaita";
-      monospace-font-name = "Hack 12";
+      monospace-font-name = "FiraCode Nerd Font 12";
       show-battery-percentage = true;
     };
 
@@ -141,6 +158,16 @@ with lib.hm.gvariant;
       numlock-state = false;
     };
 
+    "org/gnome/desktop/peripherals/mouse" = {
+      speed = 0.0;
+    };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      edge-scrolling-enabled = false;
+      speed = 0.18103448275862077;
+      two-finger-scrolling-enabled = true;
+    };
+
     "org/gnome/desktop/screensaver" = {
       color-shading-type = "solid";
       picture-options = "zoom";
@@ -159,6 +186,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
+      close = [ "<Alt>q" ];
       move-to-workspace-left = [ "<Shift><Alt>h" ];
       move-to-workspace-right = [ "<Shift><Alt>l" ];
       switch-to-workspace-left = [ "<Control><Alt>h" ];
@@ -167,8 +195,9 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/preferences" = {
+      action-double-click-titlebar = "toggle-maximize";
       auto-raise = false;
-      button-layout = "appmenu:close";
+      button-layout = "appmenu:minimize,close";
       focus-mode = "click";
     };
 
@@ -245,14 +274,22 @@ with lib.hm.gvariant;
 
     "org/gnome/nautilus/window-state" = {
       initial-size = mkTuple [ 890 550 ];
+      initial-size-file-chooser = mkTuple [ 890 550 ];
+      maximized = false;
     };
 
     "org/gnome/nm-applet" = {
       disable-connected-notifications = true;
     };
 
+    "org/gnome/portal/filechooser/com/github/johnfactotum/Foliate" = {
+      last-folder-path = "/home/shahruz/Downloads";
+    };
+
     "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = false;
       night-light-schedule-automatic = false;
+      night-light-temperature = mkUint32 3700;
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
@@ -366,6 +403,10 @@ with lib.hm.gvariant;
       transparency-mode = "DEFAULT";
     };
 
+    "org/gnome/shell/extensions/rounded-window-corners-reborn" = {
+      settings-version = mkUint32 7;
+    };
+
     "org/gnome/shell/extensions/system-monitor" = {
       show-swap = true;
       show-upload = false;
@@ -380,7 +421,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/world-clocks" = {
-      locations = [ ];
+      locations = [];
     };
 
     "org/gnome/tweaks" = {
