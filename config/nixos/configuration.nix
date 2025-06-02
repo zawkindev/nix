@@ -6,8 +6,18 @@
 
 {
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    efiSupport = true;
+    useOSProber = true;
+    device = "nodev"; # Required for EFI systems
+    extraConfig = ''
+      GRUB_DISABLE_OS_PROBER=false
+    '';
+  };
   boot.loader.efi.canTouchEfiVariables = true;
+
   boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
   networking.hostName = "tya"; # Define your hostname.
@@ -81,6 +91,7 @@
     ntfs3g
     udisks2
     gnome.gvfs
+    os-prober
   ];
 
   services.udisks2.enable = true;
