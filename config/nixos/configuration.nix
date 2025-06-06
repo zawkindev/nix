@@ -8,7 +8,6 @@
   # Bootloader.
   boot.loader.grub = {
     enable = true;
-    version = 2;
     efiSupport = true;
     useOSProber = true;
     device = "nodev"; # Required for EFI systems
@@ -26,18 +25,27 @@
   nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  networking.resolvconf.enable = false;
+  environment.etc."resolv.conf".text = ''
+    nameserver 1.1.1.1
+    nameserver 8.8.8.8
+  '';
+
 
   time.timeZone = "Asia/Tashkent";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [ "en_US.UTF-8" "ru_RU.UTF-8" ];
+  };
 
   services.printing.enable = true;
 
   services.xserver = {
     enable = true;
-    xkb.layout = "us";
-    xkb.options = "ctrl:swapcaps";
+    xkb.layout = "us,ru";
+    xkb.options = "ctrl:swapcaps,grp:alt_shift_toggle";
 
     displayManager.gdm.enable = true;
     desktopManager = {
