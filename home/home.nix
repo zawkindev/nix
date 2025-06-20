@@ -17,6 +17,7 @@ in
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
+    discord
     poppler
     imagemagick
     inkscape-with-extensions
