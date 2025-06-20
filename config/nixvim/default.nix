@@ -40,7 +40,11 @@
         highlight SignColumn guibg=NONE ctermbg=NONE
         highlight VertSplit guibg=NONE ctermbg=NONE
         highlight StatusLine guibg=NONE ctermbg=NONE
-      ]]
+        highlight LineNr guibg=NONE ctermbg=NONE
+        highlight CursorLineNr guibg=NONE ctermbg=NONE
+        highlight FoldColumn guibg=NONE ctermbg=NONE
+        highlight WinSeparator guibg=NONE ctermbg=NONE
+      ]]  
     '';
 
 
